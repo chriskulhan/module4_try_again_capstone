@@ -34,7 +34,8 @@ class DunnDelivery:
         #use keyword self, because 
         #key-value pairs, key is location, value is number of minutes to that location
         self.delivery_locations = {
-            "Library":10,
+            #number of minutes to deliver:
+            "Library": 10, 
             "Academic Success Center": 8,
             "ITEC Computer Lab": 5
         }
@@ -48,7 +49,7 @@ class DunnDelivery:
             #Loop through items in category on the menu, display them to the user:
             #use for loop, predefined number of items
             for item in self.menu[category]:
-                print(f"{item}: ${self.price[item]:.2f}")
+                print(f"{item}: ${self.prices[item]:.2f}")
         else:
             #show the entire menu if they haven't specified a category
             for category in self.menu:
@@ -56,13 +57,13 @@ class DunnDelivery:
                 print(f"\n=== {category} ===")
                 #nest a second for loop, to go through each item within the category
                 for item in self.menu[category]:
-                    print(f"{item}: ${self.prices[item]}:.2f")
+                    print(f"{item}: ${self.prices[item]:.2f}")
     #Method to calculate the total cost of the order:
     #set false as default
 
     def calculate_total(self, items, has_student_id=False):
         #Calculate the total 
-        total = sum(self.prices[item]) for item in items)
+        total = sum(self.prices[item] for item in items)
             
         #calculate the student discount based on the student id  
         #if has_student_id = True and total is more than 10
