@@ -9,7 +9,7 @@ class DunnDelivery:
         #Menu attribute = menu of items you can order to be delivered:
         self.menu = {
             "Energy Drinks": ["Monster", "Rockstar"],
-            "Coffee Drinks": ["Latte", "Cappuccino"],
+            "Coffee Drinks": ["Latte", "Cappuccino", "Horchata", "Chai", "Espresso shot"],
             "Breakfast": ["Bagel", "Muffin", "Scone"],
             "Lunch": ["Falafel Wrap", "Hummus & Pita", "Chicken Wrap"]
         }
@@ -22,6 +22,9 @@ class DunnDelivery:
             "Rockstar": 3.99, 
             "Latte": 4.99,
             "Cappuccino": 4.99,
+            "Horchata": 3.99,
+            "Chai": 4.99,
+            "Espresso shot": 2.99,
             "Bagel": 2.99,
             "Muffin": 2.99,
             "Scone": 2.99,
@@ -113,10 +116,15 @@ class DunnDelivery:
         print(f"Total after discount: ${total:.2f}") 
         print(f"Estimated delivery time: {delivery_time} minutes")   
 
+    #Part 2:Individual exercise: Create a rate_delivery method that lets customers rate 
+    # their delivery (1-5 stars)
+    def rate_delivery(self, numberOfStars = None):
+        if 
+
 #Main method will be executed as soon as the progrm runs
 def main():
     #Create a new delivery object **Instantiating a new object here
-    #=calling the constructor for the dunn delviery class
+    #=calling the constructor for the dunn delivery class
     delivery = DunnDelivery()
 
     #Show the menu
