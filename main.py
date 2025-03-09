@@ -119,18 +119,24 @@ class DunnDelivery:
     #Part 2:Individual exercise: Create a rate_delivery method that lets customers rate 
     # their delivery (1-5 stars)
     def rate_delivery(self, location, items, numberOfStars = None):
-        if location != None and items != None:
+        #make sure the location and items are not empty:
+        if location and items:
             print("Please rate your delivery experience (1-5 stars): ")
-            numberOfStars = input(int())
+            # numberOfStars = input(int()) (would need to actually ask the customer, but using example data for this)
             #TODO add error handling for invalid (non numerical/integer) input
 
-        elif numberOfStars >= 1 and numberOfStars <= 5:
+        if numberOfStars >= 1 and numberOfStars <= 5:
             print(f"Rating: {numberOfStars} stars")
         else: 
             print("Please enter a valid number of stars (1-5) ")
             return
+        
+    def add_priority_delivery(self, location, items):
+        #add $2 to the total cost
+        #subtract 3 minutes from the delivery time
+          
                 
-#Main method will be executed as soon as the progrm runs
+#Main method will be executed as soon as the program runs
 def main():
     #Create a new delivery object **Instantiating a new object here
     #=calling the constructor for the dunn delivery class
@@ -145,7 +151,10 @@ def main():
     #Display the receipt for the order
     delivery.print_order("ITEC Computer Lab", order, 9, has_student_id=True);
 
-    #Ask for a rating fromn the customer: 
+    #Add priority delivery of the order (cost $2, but reduces delivery time by 3 minutes)
+    delivery.add_priority_delivery("ITEC Computer Lab", order)
+
+    #Ask for a rating from the customer: 
     delivery.rate_delivery("ITEC Computer Lab", order, 5)
 
 #Add the line of code to automatically call the main method
