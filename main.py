@@ -131,9 +131,15 @@ class DunnDelivery:
             print("Please enter a valid number of stars (1-5) ")
             return
         
-    def add_priority_delivery(self, location, items):
+    def add_priority_delivery(self, location, items, estimate_delivery, priority_delivery = False):
         #add $2 to the total cost
         #subtract 3 minutes from the delivery time
+        #delivery time can't be less than zero, so the initial estimate_delivery needs to be greater than 3
+        if estimate_delivery >= 5:
+            total = total + 2
+            delivery_time = delivery_time - 3
+        # else
+        
           
                 
 #Main method will be executed as soon as the program runs
