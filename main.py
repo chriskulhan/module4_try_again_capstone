@@ -131,17 +131,31 @@ class DunnDelivery:
             print("Please enter a valid number of stars (1-5) ")
             return
         
-    def add_priority_delivery(self, location, items, estimate_delivery, priority_delivery = False):
+    def add_priority_delivery(self, location, items, current_hour, priority_delivery = False):
         #add $2 to the total cost
         #subtract 3 minutes from the delivery time
         #delivery time can't be less than zero, so the initial estimate_delivery needs to be greater than 3
-        if estimate_delivery >= 5:
-            total = total + 2
-            delivery_time = delivery_time - 3
-        # else
-        
-          
-                
+
+        #1. Get regular delivery time: 
+        regular_time = self.estimate_delivery (location, current_hour)
+        regular_total = self.calculate_total(items)
+
+        if priority_delivery:
+            #If > 3 minutes, can decrease, otherwise can't
+            if regular_time > 3:
+                priority_time = regular_time - 3
+            else: 
+                priority_time = regular_time
+
+            #2. Add $2.00 to the total cost
+            priority_total = regular_total + 2.00
+            print(f"Priority delivery added! + $2.00")
+            print(f"You delivery time is reduced from {regular_time} to {priority_time} minutes")   
+
+            return priority_total, priority_time
+
+        return regular_total, regular_time   
+
 #Main method will be executed as soon as the program runs
 def main():
     #Create a new delivery object **Instantiating a new object here
