@@ -167,7 +167,7 @@ class DunnDelivery:
                 priority_time = regular_time
 
             #2. Add $2.00 to the total cost
-            priority_total = regular_total + 2.00
+            priority_total = (regular_total + 2.00)
             print(f"Priority delivery added! + $2.00")
             print(f"You delivery time is reduced from {regular_time} to {priority_time} minutes")   
 
@@ -199,10 +199,11 @@ def main():
     #priority_choice = input("Would you like priority delivery for $2.00? (y/n): ").lower() == 'y'
     priority_choice = True #to test, use True instead of constantly putting in y/n
 
+    print(f"Would you like priority delivery for $2.00? (y/n):")
+    print(f"yes")
     if priority_choice:
         #TODO this was Dr. Mary's code but it doesn't produce the results I expect and I don't understand why
         #the new_total, new_time is used. The updated delivery time AND the estimated delivery time are the same
-
         #Start up priority delivery, add $2 and reduce delivery time
         new_total, new_time = delivery.add_priority_delivery(location, order, current_hour)
         print(f"Updated total: ${new_total:.2f}")
