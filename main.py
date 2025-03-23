@@ -47,9 +47,10 @@ class DunnDelivery:
     #use a for loop to go through the prices dictionary
     #use a conditional to check if the price is lower than the user is looking for
     #if the price is lower, print the item
-    def search_by_price(self, prices):
-        user_price_search = float(input("Enter the maximum price you want to pay: "))
-        print(f"\nItems under ${user_price_search:.2f}:")
+    def search_by_price(self, user_price_search, prices):
+        #TODO this needs to be scaled back to not have user input. Double check the main method
+        # user_price_search = float(input("Enter the maximum price you want to pay: "))
+        # print(f"\nItems under ${user_price_search:.2f}:")
         for item, item_price in self.prices():
             if item_price <= prices:
                 print(f"{item}: ${item_price:.2f}")                  
@@ -183,13 +184,11 @@ def main():
     #=calling the constructor for the dunn delivery class
     delivery = DunnDelivery()
 
-    
     #Search for items under a certain price
     
-    if delivery.user_price_search:
-            delivery.search_by_price 
-    else:
-        delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
+    delivery.search_by_price(6.99, delivery.prices) #added a price to search for
+    
+    delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
 
     #Sample order at 9:30am (peak morning hour)
     order = ["Latte", "Bagel", "Muffin"] #added muffin to see if discount worked.
