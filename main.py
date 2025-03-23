@@ -34,7 +34,7 @@ class DunnDelivery:
         }
 
         #Add a dictionary of the delivery locations and number minutes to deliver to that location
-        #use keyword self, because 
+        #use keyword self, because delivery_locations is an attribute of the class
         #key-value pairs, key is location, value is number of minutes to that location
         self.delivery_locations = {
             #number of minutes to deliver:
@@ -42,6 +42,7 @@ class DunnDelivery:
             "Academic Success Center": 8,
             "ITEC Computer Lab": 5
         }
+
     #Show the menu of items available for delivery
     # Create a new method using def
     #category is set to none by default
@@ -138,7 +139,8 @@ class DunnDelivery:
             print("Please enter a valid number of stars (1-5) ")
             return
         
-    def add_priority_delivery(self, location, items, current_hour, priority_delivery = False):
+        #priority_delivery = False by default:
+    def add_priority_delivery(self, location, items, current_hour, priority_delivery=False):
         #add $2 to the total cost
         #subtract 3 minutes from the delivery time
         #delivery time can't be less than zero, so the initial estimate_delivery needs to be greater than 3
@@ -148,9 +150,9 @@ class DunnDelivery:
         regular_total = self.calculate_total(items)
 
         if priority_delivery:
-            #If > 3 minutes, can decrease, otherwise can't
+            #If > 3 minutes, can decrease delivery time, otherwise can't
             if regular_time > 3:
-                priority_time = regular_time - 3
+                priority_time = (regular_time - 3)
             else: 
                 priority_time = regular_time
 
@@ -188,6 +190,9 @@ def main():
     priority_choice = True #to test, use True instead of constantly putting in y/n
 
     if priority_choice:
+        #TODO this was Dr. Mary's code but it doesn't produce the results I expect and I don't understand why
+        #the new_total, new_time is used. The updated delivery time AND the estimated delivery time are the same
+
         #Start up priority delivery, add $2 and reduce delivery time
         new_total, new_time = delivery.add_priority_delivery(location, order, current_hour)
         print(f"Updated total: ${new_total:.2f}")
