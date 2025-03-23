@@ -43,6 +43,16 @@ class DunnDelivery:
             "ITEC Computer Lab": 5
         }
 
+    #method to search for items in the menu by price
+    #use a for loop to go through the prices dictionary
+    #use a conditional to check if the price is lower than the user is looking for
+    #if the price is lower, print the item
+    def search_by_price(self, prices):
+        for item, item_price in self.prices(item, item_price):
+            if item_price > prices:
+                print(f"{item}: ${item_price:.2f}")                  
+                #prints the item and the price                      
+
     #Show the menu of items available for delivery
     # Create a new method using def
     #category is set to none by default
@@ -150,7 +160,7 @@ class DunnDelivery:
         regular_total = self.calculate_total(items)
 
         if priority_delivery:
-            #If > 3 minutes, can decrease delivery time, otherwise can't
+            #If > 3 minutes, can decrease delivery, otherwise can't
             if regular_time > 3:
                 priority_time = (regular_time - 3)
             else: 
@@ -172,10 +182,10 @@ def main():
     delivery = DunnDelivery()
 
     #Show the menu
-    delivery.show_menu("Coffee Drinks")
+    delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
 
     #Sample order at 9:30am (peak morning hour)
-    order = ["Latte", "Bagel"]
+    order = ["Latte", "Bagel", "Muffin"] #added muffin to see if discount worked.
     location = 'ITEC Computer Lab'
     current_hour = 9
     has_student_id = True
