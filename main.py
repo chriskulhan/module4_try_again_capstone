@@ -48,8 +48,10 @@ class DunnDelivery:
     #use a conditional to check if the price is lower than the user is looking for
     #if the price is lower, print the item
     def search_by_price(self, prices):
-        for item, item_price in self.prices(item, item_price):
-            if item_price > prices:
+        user_price_search = float(input("Enter the maximum price you want to pay: "))
+        print(f"\nItems under ${user_price_search:.2f}:")
+        for item, item_price in self.prices():
+            if item_price <= prices:
                 print(f"{item}: ${item_price:.2f}")                  
                 #prints the item and the price                      
 
@@ -163,13 +165,13 @@ class DunnDelivery:
             #If > 3 minutes, can decrease delivery, otherwise can't
             if regular_time > 3:
                 priority_time = (regular_time - 3)
+            
+                #2. Add $2.00 to the total cost
+                priority_total = (regular_total + 2.00)
+                print(f"Priority delivery added! + $2.00")
+                print(f"You delivery time is reduced from {regular_time} to {priority_time} minutes")   
             else: 
                 priority_time = regular_time
-
-            #2. Add $2.00 to the total cost
-            priority_total = (regular_total + 2.00)
-            print(f"Priority delivery added! + $2.00")
-            print(f"You delivery time is reduced from {regular_time} to {priority_time} minutes")   
 
             return priority_total, priority_time
 
@@ -181,8 +183,13 @@ def main():
     #=calling the constructor for the dunn delivery class
     delivery = DunnDelivery()
 
-    #Show the menu
-    delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
+    
+    #Search for items under a certain price
+    
+    if delivery.user_price_search:
+            delivery.search_by_price 
+    else:
+        delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
 
     #Sample order at 9:30am (peak morning hour)
     order = ["Latte", "Bagel", "Muffin"] #added muffin to see if discount worked.
