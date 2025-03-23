@@ -121,9 +121,16 @@ class DunnDelivery:
     def rate_delivery(self, location, items, numberOfStars = None):
         #make sure the location and items are not empty:
         if location and items:
-            print("Please rate your delivery experience (1-5 stars): ")
+            if numberOfStars is None:
+                #ask the customer to rate their delivery experience
+                try:
+                    numberOfStars = int(input("Please rate your delivery experience (1-5 stars): "))
+                except ValueError:
+                    print("Please enter a valid number of stars (1-5)")
+                    return   
+
             # numberOfStars = input(int()) (would need to actually ask the customer, but using example data for this)
-            #TODO add error handling for invalid (non numerical/integer) input
+            #TODONE ^^above add error handling for invalid (non numerical/integer) input
 
         if numberOfStars >= 1 and numberOfStars <= 5:
             print(f"Rating: {numberOfStars} stars")
@@ -167,15 +174,27 @@ def main():
 
     #Sample order at 9:30am (peak morning hour)
     order = ["Latte", "Bagel"]
+    location = 'ITEC Computer Lab'
+    current_hour = 9
+    has_student_id = True
 
     #Display the receipt for the order
-    delivery.print_order("ITEC Computer Lab", order, 9, has_student_id=True);
+    delivery.print_order(location, order, current_hour, has_student_id);
 
-    #Add priority delivery of the order (cost $2, but reduces delivery time by 3 minutes)
-    delivery.add_priority_delivery("ITEC Computer Lab", order)
+    #Ask if customer wants priority delivery
+    # Add priority delivery of the order (cost $2, but reduces delivery time by 3 minutes)
+    #user app for real would ask for input
+    #priority_choice = input("Would you like priority delivery for $2.00? (y/n): ").lower() == 'y'
+    priority_choice = True #to test, use True instead of constantly putting in y/n
+
+    if priority_choice:
+        #Start up priority delivery, add $2 and reduce delivery time
+        new_total, new_time = delivery.add_priority_delivery(location, order, current_hour)
+        print(f"Updated total: ${new_total:.2f}")
+        print(f"Updated delivery time: {new_time} minutes")
 
     #Ask for a rating from the customer: 
-    delivery.rate_delivery("ITEC Computer Lab", order, 5)
+    delivery.rate_delivery(location, order, 5)
 
 #Add the line of code to automatically call the main method
 if __name__ == "__main__":
