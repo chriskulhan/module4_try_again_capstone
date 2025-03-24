@@ -214,6 +214,7 @@ def main():
         new_total, new_time = delivery.add_priority_delivery(location, order, current_hour)
         print(f"Updated total: ${new_total:.2f}")
         print(f"Updated delivery time: {new_time} minutes")
+        
 
     #Ask for a rating from the customer: 
     delivery.rate_delivery(location, order, 5)
