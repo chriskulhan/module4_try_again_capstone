@@ -186,9 +186,9 @@ def main():
 
     #Search for items under a certain price
     
-    delivery.search_by_price(6.99, delivery.prices) #added a price to search for
+    # delivery.search_by_price(6.99, delivery.prices) #added a price to search for
     
-    delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
+    # delivery.show_menu() #removed "coffee drinks" so I could see if the whole menu printed
 
     #Sample order at 9:30am (peak morning hour)
     order = ["Latte", "Bagel", "Muffin"] #added muffin to see if discount worked.
@@ -205,17 +205,23 @@ def main():
     #priority_choice = input("Would you like priority delivery for $2.00? (y/n): ").lower() == 'y'
     priority_choice = True #to test, use True instead of constantly putting in y/n
 
-    print(f"Would you like priority delivery for $2.00? (y/n):")
+    print(f"Would you like priority delivery for $2.00? (y/n):") 
+    #this is just here so I know where the code is, could add user input here.
     print(f"yes")
     if priority_choice:
-        #TODO this was Dr. Mary's code but it doesn't produce the results I expect and I don't understand why
-        #the new_total, new_time is used. The updated delivery time AND the estimated delivery time are the same
-        #Start up priority delivery, add $2 and reduce delivery time
         new_total, new_time = delivery.add_priority_delivery(location, order, current_hour)
-        print(f"Updated total: ${new_total:.2f}")
+        
+        #TODOne this updated total "new_total" is grabbing the wrong total. It needs to be the total of the order
+        #after the discount is applied, not the total of the order before the discount.
+        if has_student_id and new_total > 10:
+            new_total = (new_total*0.9+2)
+            # print("Student discount applied!")
+        print(f"Updated total: ${new_total:.2f}") 
+
+        if new_time > 3:
+            new_time -= 3
         print(f"Updated delivery time: {new_time} minutes")
         
-
     #Ask for a rating from the customer: 
     delivery.rate_delivery(location, order, 5)
 
